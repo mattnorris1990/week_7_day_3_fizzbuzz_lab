@@ -5,6 +5,7 @@ function App() {
   
   const [number, setNumber] = useState(1)
   const [fizzbuzz, setFizzbuzz] = useState(1)
+  const [name, setName] = useState("")
 
   useEffect(()=>{
     if (number % 3 === 0 && number % 5 === 0) {
@@ -17,7 +18,20 @@ function App() {
       setFizzbuzz(number);
     }
 
-  })
+  }, [number])
+
+  useEffect(()=> {
+    if (number === 7) {
+      setName("Derek")
+    }
+    else if (number === 22) {
+      setName("Matt")
+    }
+    else {
+      setName("")
+    }
+
+  },[number])
   
   const handleInc = () => {
     setNumber(number+1)
@@ -29,8 +43,8 @@ function App() {
 
     <button value={number} onClick={handleInc}>+ add</button>
 
-    <h2>Number is {number}</h2>
-    <h2>{fizzbuzz}</h2>
+    <h2>Number is {number}: {fizzbuzz}</h2>
+    <h3>{name}</h3>
 
     </>
   );
